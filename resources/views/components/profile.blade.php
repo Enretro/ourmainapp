@@ -3,7 +3,7 @@
       <h2>
         <img class="avatar-small" src="{{$shareData['avatar']}}" /> {{$shareData['username']}}
         @auth
-        @if($shareData['currentlyFollowing'] AND auth()->user()->username != $shareData['$username'])
+        @if($shareData['currentlyFollowing'] AND auth()->user()->username != $shareData['username'])
         <form class="ml-2 d-inline" action="/create-follow/{{$shareData['username']}}" method="POST">
           @csrf
           <button class="btn btn-primary btn-sm">Follow <i class="fas fa-user-plus"></i></button>
@@ -26,8 +26,8 @@
 
       <div class="profile-nav nav nav-tabs pt-2 mb-4">
         <a href="/profile/{{$shareData['username']}}" class="profile-nav-link nav-item nav-link {{ Request::segment(3) == "" ? "active" : "" }}">Posts: {{$shareData['postCount']}}</a>
-        <a href="/profile/{{$shareData['username']}}/followers" class="profile-nav-link nav-item nav-link {{ Request::segment(3) == "followers" ? "active" : "" }}">Followers: 3</a>
-        <a href="/profile/{{$shareData['username']}}/following" class="profile-nav-link nav-item nav-link {{ Request::segment(3) == "following" ? "active" : "" }}">Following: 2</a>
+        <a href="/profile/{{$shareData['username']}}/followers" class="profile-nav-link nav-item nav-link {{ Request::segment(3) == "followers" ? "active" : "" }}">Followers: {{$shareData['followerCount']}}</a>
+        <a href="/profile/{{$shareData['username']}}/following" class="profile-nav-link nav-item nav-link {{ Request::segment(3) == "following" ? "active" : "" }}">Following: {{$shareData['followingCount']}}</a>
       </div>
 
       <div class="profile-slot-content">
