@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function search($term) {
+       // return Post::where('title', 'LIKE', '%' . $term . '%')->orWhere('body', 'LIKE', '%' . $term . '%');
+       $posts = Post::search($term)->get();
+       $posts->load('user:id,username,avatar');
+       return $posts;
+    }
+
     public function showEditForm(Post $post) {
         return view('edit-post', ['post' => $post]);
     }
